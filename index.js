@@ -32,16 +32,16 @@ async function run() {
         })
 
         // Add products
-        app.post('/products', async (req,res)=>{
+        app.post('/products', async (req, res) => {
             const product = req.body;
             const result = await productsCollection.insertOne(product);
             res.json(result)
         })
 
         // product delete
-        app.delete('/products/:id', async (req,res)=>{
+        app.delete('/products/:id', async (req, res) => {
             const id = req.params.id;
-            const order = { _id: ObjectId(id) }; 
+            const order = { _id: ObjectId(id) };
             const result = await productsCollection.deleteOne(order);
             res.json(result)
         })
@@ -72,7 +72,7 @@ async function run() {
             const result = await cursor.toArray()
             res.json(result)
         });
-   
+
 
         // show Booking Delete
         app.delete('/booking/:id', async (req, res) => {
@@ -103,24 +103,24 @@ async function run() {
         })
 
         // search admin user
-        app.get('/users/:email', async (req,res)=>{
+        app.get('/users/:email', async (req, res) => {
             const email = req.params.email;
-            // console.log(email)
-            const query = {email: email};
-            const user = await userinfoCollection.findOne(query)
+            console.log(email)
+            const query = { email: email };
+            const user = await userinfoCollection.findOne(query);
             // console.log(result)
             let isAdmin = false;
-            if(user.role === 'admin' ){
+            if (user?.role === 'admin') {
                 isAdmin = true;
             }
-            res.json({admin: isAdmin})
+            res.json({ admin: isAdmin })
         })
 
         // Make admin 
-        app.put('/users/admin', async (req,res)=>{
+        app.put('/users/admin', async (req, res) => {
             const user = req.body;
-            const filter = {email: user.email}
-            const updateDoc = {$set: {role: 'admin'}}
+            const filter = { email: user.email }
+            const updateDoc = { $set: { role: 'admin' } }
             const result = await userinfoCollection.updateOne(filter, updateDoc);
             res.json(result);
         })
@@ -129,19 +129,19 @@ async function run() {
         app.get('/booking/:id', async (req, res) => {
             const id = req.query.productId;
             console.log(id)
-            const order = {productId: id};
+            const order = { productId: id };
             const cursor = bookingCollection.find(order);
             const result = await cursor.toArray();
             res.json(result)
         });
 
-        app.post('/review', async(req,res)=>{
+        app.post('/review', async (req, res) => {
             const body = req.body;
             const result = await reviewCollection.insertOne(body)
             res.json(result)
         })
 
-        app.get('/review', async (req,res)=>{
+        app.get('/review', async (req, res) => {
             const cursor = reviewCollection.find({});
             const result = await cursor.toArray();
             res.json(result);
