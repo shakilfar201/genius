@@ -32,7 +32,7 @@ async function run() {
         })
 
         app.get('/booking', async (req, res) => {
-            const cursor = productsCollection.find({})
+            const cursor = bookingCollection.find({})
             const result = await cursor.toArray();
             res.json(result)
         })
