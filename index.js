@@ -31,6 +31,7 @@ async function run() {
             res.json(result)
         })
 
+
         // Add products
         app.post('/products', async (req, res) => {
             const product = req.body;
@@ -63,7 +64,6 @@ async function run() {
             res.json(result)
         })
 
-
         // show Booking info by email
         app.get('/booking', async (req, res) => {
             const email = req.query.email;
@@ -71,6 +71,14 @@ async function run() {
             const cursor = bookingCollection.find(query)
             const result = await cursor.toArray()
             res.json(result)
+        });
+
+        app.put('/booking', async (req, res) => {
+            const user = req.body;
+            const filter = {email: user.email};
+            const updateDoc = {$set: {status: 'confirm'}};
+            const result = await bookingCollection.updateOne(filter, updateDoc);
+            res.json(result);
         });
 
 
