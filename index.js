@@ -81,7 +81,7 @@ async function run() {
 
         app.put('/booking', async (req, res) => {
             const user = req.body;
-            const filter = {email: user.email};
+            const filter = {productPrice: user.productPrice};
             const updateDoc = {$set: {status: 'confirm'}};
             const result = await bookingCollection.updateOne(filter, updateDoc);
             res.json(result);
