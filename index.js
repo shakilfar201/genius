@@ -31,6 +31,12 @@ async function run() {
             res.json(result)
         })
 
+        app.get('/booking', async (req, res) => {
+            const cursor = productsCollection.find({})
+            const result = await cursor.toArray();
+            res.json(result)
+        })
+
 
         // Add products
         app.post('/products', async (req, res) => {
@@ -163,7 +169,7 @@ run().catch(console.dir);
 
 app.get('/', (req, res) => {
     res.send('connect')
-})
+});
 
 app.listen(port, () => {
     console.log('listennng to the port', port)
