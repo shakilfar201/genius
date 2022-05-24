@@ -82,10 +82,18 @@ async function run() {
         app.put('/booking', async (req, res) => {
             const user = req.body;
             const filter = { token : user.token };
-            const updateDoc = { $set: { status: 'confirm' } };
-            const result = await bookingCollection.updateOne(filter, updateDoc);
+            const updateDoc = { $set: { status: user.taka }  };
+            const result = await bookingCollection.updateOne(filter, updateDoc,updateDoc2 );
             res.json(result);
         });
+        
+        // app.put('/booking/taka', async (req, res) => {
+        //     const user = req.body;
+        //     const filter = { token : user.token };
+        //     const updateDoc = { $set: { status: user }  };
+        //     const result = await bookingCollection.updateOne(filter, updateDoc);
+        //     res.json(result);
+        // });
 
         // show Booking Delete
         app.delete('/booking/:id', async (req, res) => {
