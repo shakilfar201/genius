@@ -71,11 +71,12 @@ async function run() {
         })
 
         // show Booking info by email
-        app.get('/booking', async (req, res) => {
+        app.get('/booking/email', async (req, res) => {
             const email = req.query.email;
-            const query = { email: email }
-            const cursor = bookingCollection.find(query)
-            const result = await cursor.toArray()
+            console.log(email)
+            const query = { email: email };
+            const cursor = bookingCollection.find(query);
+            const result = await cursor.toArray();
             res.json(result)
         });
 
@@ -86,14 +87,6 @@ async function run() {
             const result = await bookingCollection.updateOne(filter, updateDoc );
             res.json(result);
         });
-        
-        // app.put('/booking/taka', async (req, res) => {
-        //     const user = req.body;
-        //     const filter = { token : user.token };
-        //     const updateDoc = { $set: { status: user }  };
-        //     const result = await bookingCollection.updateOne(filter, updateDoc);
-        //     res.json(result);
-        // });
 
         // show Booking Delete
         app.delete('/booking/:id', async (req, res) => {
