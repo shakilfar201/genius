@@ -82,7 +82,7 @@ async function run() {
         app.put('/booking', async (req, res) => {
             const user = req.body;
             const filter = { token : user.token };
-            const updateDoc = { $set: { status: user.taka }  };
+            const updateDoc = { $set: { status: 'confirm', taka: user.taka }  };
             const result = await bookingCollection.updateOne(filter, updateDoc );
             res.json(result);
         });
