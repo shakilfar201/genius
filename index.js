@@ -83,7 +83,7 @@ async function run() {
             const user = req.body;
             const filter = { token : user.token };
             const updateDoc = { $set: { status: user.taka }  };
-            const result = await bookingCollection.updateOne(filter, updateDoc,updateDoc2 );
+            const result = await bookingCollection.updateOne(filter, updateDoc );
             res.json(result);
         });
         
