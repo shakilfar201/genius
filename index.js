@@ -81,12 +81,11 @@ async function run() {
 
         app.put('/booking', async (req, res) => {
             const user = req.body;
-            const filter = {productPrice: user.productPrice};
-            const updateDoc = {$set: {status: 'confirm'}};
+            const filter = { token : user.token };
+            const updateDoc = { $set: { status: 'confirm' } };
             const result = await bookingCollection.updateOne(filter, updateDoc);
             res.json(result);
         });
-
 
         // show Booking Delete
         app.delete('/booking/:id', async (req, res) => {
