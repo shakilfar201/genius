@@ -22,6 +22,7 @@ async function run() {
         const bookingCollection = database.collection('bookingInfo');
         const userinfoCollection = database.collection('userinfo');
         const reviewCollection = database.collection('review');
+        const carmodelCollection = database.collection('carmodel');
 
 
         // All product
@@ -29,21 +30,27 @@ async function run() {
             const cursor = productsCollection.find({})
             const result = await cursor.toArray();
             res.json(result)
-        })
+        });
 
         app.get('/booking', async (req, res) => {
             const cursor = bookingCollection.find({})
             const result = await cursor.toArray();
             res.json(result)
-        })
+        });
 
+        // get all car
+        app.get('/carmodel', async (req, res) => {
+            const cursor = carmodelCollection.find({})
+            const result = await cursor.toArray();
+            res.json(result)
+        });
 
         // Add products
         app.post('/products', async (req, res) => {
             const product = req.body;
             const result = await productsCollection.insertOne(product);
             res.json(result)
-        })
+        });
 
         // product delete
         app.delete('/products/:id', async (req, res) => {
@@ -51,7 +58,7 @@ async function run() {
             const order = { _id: ObjectId(id) };
             const result = await productsCollection.deleteOne(order);
             res.json(result)
-        })
+        });
 
         // single Product
         app.get('/products/:id', async (req, res) => {
@@ -60,7 +67,7 @@ async function run() {
             const product = { _id: ObjectId(id) };
             const result = await productsCollection.findOne(product);
             res.json(result)
-        })
+        });
 
         // Booking Info
         app.post('/booking', async (req, res) => {
@@ -68,7 +75,7 @@ async function run() {
             const result = await bookingCollection.insertOne(products);
             // console.log(result);
             res.json(result)
-        })
+        });
 
         // show Booking info by email
         app.get('/booking/email', async (req, res) => {
