@@ -52,6 +52,13 @@ async function run() {
             res.json(result)
         });
 
+        // Add Cars
+        app.post('/carmodel', async (req, res) => {
+            const car = req.body;
+            const result = await carmodelCollection.insertOne(car);
+            res.json(result)
+        });
+
         // product delete
         app.delete('/products/:id', async (req, res) => {
             const id = req.params.id;
