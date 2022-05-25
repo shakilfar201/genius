@@ -67,6 +67,14 @@ async function run() {
             res.json(result)
         });
 
+        // Car delete
+        app.delete('/carmodel/:id', async (req, res) => {
+            const id = req.params.id;
+            const order = { _id: ObjectId(id) };
+            const result = await carmodelCollection.deleteOne(order);
+            res.json(result)
+        }); 
+
         // single Product
         app.get('/products/:id', async (req, res) => {
             const id = req.params.id;
