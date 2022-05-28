@@ -73,7 +73,7 @@ async function run() {
             const order = { _id: ObjectId(id) };
             const result = await carmodelCollection.deleteOne(order);
             res.json(result)
-        }); 
+        });
 
         // single Product
         app.get('/products/:id', async (req, res) => {
@@ -102,12 +102,22 @@ async function run() {
             res.json(result)
         });
 
+        // Update Booking
         app.put('/booking', async (req, res) => {
             const user = req.body;
-            const filter = { token : user.token };
-            const updateDoc = { $set: { status: 'confirm', taka: user.taka, service: user.service }};
-            const result = await bookingCollection.updateOne(filter, updateDoc );
+            const filter = { token: user.token };
+            const updateDoc = { $set: { status: 'confirm', taka: user.taka, service: user.service } };
+            const result = await bookingCollection.updateOne(filter, updateDoc);
             res.json(result);
+        });
+
+        // update INventory
+        app.put('/products/quantity', async (req, res) => {
+            const value = req.body;
+            const filter = { price: value.productPrice }
+            const updateDoc = { $set: { instock: value.update } }
+            const result = await productsCollection.updateOne(filter, updateDoc);
+            res.json(result)
         });
 
         // show Booking Delete
