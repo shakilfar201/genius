@@ -7,7 +7,7 @@ const port = process.env.PORT || 5000;
 require('dotenv').config()
 
 app.use(cors())
-app.use(express.json())
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.g3sna.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
@@ -112,14 +112,14 @@ async function run() {
         });
 
         // update INventory
-        app.put('/products/quantity', async (req, res) => {
-            const value = req.body;
-            const filter = { price: value.productPrice }
-            const options = { upsert: true };
-            const updateDoc = { $set: { instock: value.update } }
-            const result = await productsCollection.updateOne(filter,options, updateDoc);
-            res.json(result)
-        });
+        // app.put('/products/quantity', async (req, res) => {
+        //     const value = req.body;
+        //     const filter = { price: value.productPrice }
+        //     const options = { upsert: true };
+        //     const updateDoc = { $set: { instock: value.update } }
+        //     const result = await productsCollection.updateOne(filter,options, updateDoc);
+        //     res.json(result)
+        // });
 
         // show Booking Delete
         app.delete('/booking/:id', async (req, res) => {
