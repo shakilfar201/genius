@@ -106,7 +106,7 @@ async function run() {
         app.put('/booking', async (req, res) => {
             const user = req.body;
             const filter = { token: user.token };
-            const updateDoc = { $set: { status: 'confirm', taka: user.taka, service: user.service } };
+            const updateDoc = { $set: { status: 'confirm', taka: user.taka, service: user.value } };
             const result = await bookingCollection.updateOne(filter, updateDoc);
             res.json(result);
         });
