@@ -41,7 +41,7 @@ async function run() {
         app.get('/booking/:id', async (req, res) => {
             const id = req.params.id;
             const order = { _id: ObjectId(id) };
-            const cursor = bookingCollection.findOne({})
+            const cursor = bookingCollection.findOne(order)
             const result = await cursor.toArray();
             res.json(result)
         });
