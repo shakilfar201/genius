@@ -38,10 +38,10 @@ async function run() {
             res.json(result)
         });
 
-        app.get('/booking/invoice/:id', async (req, res) => {
+        app.get('/booking/:id', async (req, res) => {
             const id = req.params.id;
-            const order = { _id: ObjectId(id) };
-            const result = bookingCollection.findOne(order)
+            const booking = { _id: ObjectId(id) };
+            const result = bookingCollection.findOne(booking)
             res.json(result)
         });
 
