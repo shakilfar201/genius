@@ -110,11 +110,12 @@ async function run() {
             res.json(result)
         });
 
-        app.get('/booking/date', async (req, res) => {
+        app.put('/booking/date', async (req, res) => {
+            const date = req.body;
             var orderDate = {
                 date: {
-                    $gte: new Date(req.query.date).toLocaleDateString(),
-                    $lte: new Date(req.query.date).toLocaleDateString()
+                    $gte: new Date(date.form).toLocaleDateString(),
+                    $lte: new Date(date.to).toLocaleDateString()
                 }
             }
             const cursor = bookingCollection.find(orderDate);
