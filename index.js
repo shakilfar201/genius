@@ -115,7 +115,7 @@ async function run() {
             var orderDate = {
                 date: {
                     $gte: new Date(date.form).toLocaleDateString(),
-                    $lt: new Date(date.to).toLocaleDateString()
+                    $lte: new Date(date.to).toLocaleDateString()
                 }
             }
             const cursor = bookingCollection.find(orderDate);
