@@ -116,8 +116,8 @@ async function run() {
                 $lte: new Date(req.query.to).toLocaleDateString()
             }
             console.log(date)
-            const query = { date: date };
-            const cursor = bookingCollection.find(query);
+            // const query = { date: date };
+            const cursor = bookingCollection.find(date);
             const result = await cursor.toArray();
             res.json(result)
         });
