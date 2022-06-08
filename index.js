@@ -112,8 +112,8 @@ async function run() {
 
         app.get('/booking/date', async (req, res) => {
             const query = {
-                    $gte: new Date(req.body.form).toLocaleDateString(),
-                    $lte: new Date(req.body.to).toLocaleDateString()
+                    $gte: new Date(req.query.form).toLocaleDateString(),
+                    $lte: new Date(req.query.to).toLocaleDateString()
             }
             const filter = { date: query }
             console.log(date)
