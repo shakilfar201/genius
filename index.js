@@ -112,7 +112,7 @@ async function run() {
 
         app.get('/booking/date', async (req, res) => {
             const query = {
-                Date: {
+                date: {
                     $gte: new Date(req.query.form).toLocaleDateString(),
                     $lte: new Date(req.query.to).toLocaleDateString()
                 }
