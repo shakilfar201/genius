@@ -114,7 +114,7 @@ async function run() {
             const date = req.body;
             var orderDate = {
                 date: {
-                    $gt: new Date(date.form).toLocaleDateString(),
+                    $gte: new Date(date.form).toLocaleDateString(),
                     $lt: new Date(date.to).toLocaleDateString()
                 }
             }
