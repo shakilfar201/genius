@@ -23,6 +23,7 @@ async function run() {
         const userinfoCollection = database.collection('userinfo');
         const reviewCollection = database.collection('review');
         const carmodelCollection = database.collection('carmodel');
+        const AceCollection = database.collection('ace');
 
 
         // All product
@@ -49,6 +50,13 @@ async function run() {
         app.post('/products', async (req, res) => {
             const product = req.body;
             const result = await productsCollection.insertOne(product);
+            res.json(result)
+        });
+
+        // Add Matchine Car Wise
+        app.post('/ace', async (req, res) => {
+            const product = req.body;
+            const result = await AceCollection.insertOne(product);
             res.json(result)
         });
 
