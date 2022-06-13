@@ -62,7 +62,7 @@ async function run() {
             res.json(result)
         });
 
-        app.get('/ace/engine', async (req, res) => {
+        app.get('/ace', async (req, res) => {
             const query = {type: 'engine'}
             const cursor = carmodelCollection.find(query)
             const result = await cursor.toArray();
