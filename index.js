@@ -54,9 +54,18 @@ async function run() {
         });
 
         // Add Matchine Car Wise
+
+        // Ace Start Engine
         app.post('/ace', async (req, res) => {
             const product = req.body;
             const result = await AceCollection.insertOne(product);
+            res.json(result)
+        });
+
+        app.get('/ace/engine', async (req, res) => {
+            const query = {type: 'engine'}
+            const cursor = carmodelCollection.find(query)
+            const result = await cursor.toArray();
             res.json(result)
         });
 
