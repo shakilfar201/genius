@@ -101,6 +101,14 @@ async function run() {
             res.json(result)
         });
 
+        app.get('/ace/:id', async (req, res) => {
+            const id = req.params.id;
+            // console.log(id)
+            const product = { _id: ObjectId(id) };
+            const result = await AceCollection.findOne(product);
+            res.json(result)
+        });
+
         app.get('/booking/invoice/:id', async (req, res) => {
             const id = req.params.id;
             // console.log(id)
