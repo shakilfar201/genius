@@ -69,6 +69,13 @@ async function run() {
             res.json(result)
         });
 
+        app.get('/ace/clutch', async (req, res) => {
+            const query = {type: 'clutch'}
+            const cursor = AceCollection.find(query)
+            const result = await cursor.toArray();
+            res.json(result)
+        });
+
         // Add Cars
         app.post('/carmodel', async (req, res) => {
             const car = req.body;
