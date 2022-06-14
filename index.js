@@ -62,7 +62,7 @@ async function run() {
             res.json(result)
         });
 
-        app.get('/ace', async (req, res) => {
+        app.get('/ace/x', async (req, res) => {
             const cursor = AceCollection.find(query)
             const result = await cursor.toArray();
             res.json(result)
