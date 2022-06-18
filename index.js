@@ -59,7 +59,7 @@ async function run() {
         app.post('/products/ace', async (req, res) => {
             const product = req.body;
             const query = { type: product.type, Carname: product.Carname }
-            const cursor = AceCollection.find(query);
+            const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
         });
