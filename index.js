@@ -56,27 +56,17 @@ async function run() {
         // Add Matchine Car Wise
 
         // Ace Start Engine
-        app.post('/ace', async (req, res) => {
+        app.post('/products/ace', async (req, res) => {
             const product = req.body;
-            const result = await AceCollection.insertOne(product);
-            res.json(result)
-        });
-
-        app.get('/ace/x', async (req, res) => {
-            const cursor = AceCollection.find(query)
+            const query = { type: product.type, Carname: product.Carname }
+            const cursor = AceCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
         });
 
-        app.get('/ace', async (req, res) => {
-            const query = {type: 'engine'}
-            const cursor = AceCollection.find(query)
-            const result = await cursor.toArray();
-            res.json(result)
-        });
 
         app.get('/ace/clutch', async (req, res) => {
-            const query = {type: 'clutch'}
+            const query = { type: 'clutch' }
             const cursor = AceCollection.find(query)
             const result = await cursor.toArray();
             res.json(result)
