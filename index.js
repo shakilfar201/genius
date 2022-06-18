@@ -64,13 +64,15 @@ async function run() {
             res.json(result)
         });
 
-
-        app.get('/ace/clutch', async (req, res) => {
-            const query = { type: 'clutch' }
-            const cursor = AceCollection.find(query)
+        app.put('/products/clutch', async (req, res) => {
+            const product = req.body;
+            const query = { type: product.type, Carname: product.Carname }
+            const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
         });
+
+
 
         // Add Cars
         app.post('/carmodel', async (req, res) => {
