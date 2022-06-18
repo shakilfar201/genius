@@ -23,7 +23,6 @@ async function run() {
         const userinfoCollection = database.collection('userinfo');
         const reviewCollection = database.collection('review');
         const carmodelCollection = database.collection('carmodel');
-        const AceCollection = database.collection('ace');
 
 
         // All product
@@ -56,21 +55,26 @@ async function run() {
         // Add Matchine Car Wise
 
         // Ace Start Engine
-        app.get('/products/ace', async (req, res) => {
+        app.get('/products/ace/engine', async (req, res) => {
             const query = { type: 'engine', Carname: 'ace' }
             const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
         });
 
-        app.get('/products/clutch', async (req, res) => {
+        app.get('/products/ace/clutch', async (req, res) => {
             const query = { type: 'clutch', Carname: 'ace' }
             const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
         });
 
-
+        app.get('/products/superace/engine', async (req, res) => {
+            const query = { type: 'engine', Carname: 'super ace' }
+            const cursor = productsCollection.find(query);
+            const result = await cursor.toArray();
+            res.json(result)
+        });
 
         // Add Cars
         app.post('/carmodel', async (req, res) => {
