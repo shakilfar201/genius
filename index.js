@@ -56,7 +56,7 @@ async function run() {
         // Add Matchine Car Wise
 
         // Ace Start Engine
-        app.post('/products/ace', async (req, res) => {
+        app.put('/products/ace', async (req, res) => {
             const product = req.body;
             const query = { type: product.type, Carname: product.Carname }
             const cursor = productsCollection.find(query);
