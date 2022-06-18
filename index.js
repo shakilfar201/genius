@@ -64,7 +64,7 @@ async function run() {
         });
 
         app.get('/products/clutch', async (req, res) => {
-            const query = { type: 'clucth', Carname: 'ace' }
+            const query = { type: 'clutch', Carname: 'ace' }
             const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
