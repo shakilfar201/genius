@@ -63,9 +63,8 @@ async function run() {
             res.json(result)
         });
 
-        app.put('/products/clutch', async (req, res) => {
-            const product = req.body;
-            const query = { type: product.type, Carname: product.Carname }
+        app.get('/products/clutch', async (req, res) => {
+            const query = { type: 'clucth', Carname: 'ace' }
             const cursor = productsCollection.find(query);
             const result = await cursor.toArray();
             res.json(result)
